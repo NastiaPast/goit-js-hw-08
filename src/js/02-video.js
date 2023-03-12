@@ -10,4 +10,8 @@ player.on('timeupdate', throttle(handleTimeUpdate, 1000));
 
 const savedTime = localStorage.getItem('videoplayer-current-time');
 const parsedTime = JSON.parse(savedTime);
-player.setCurrentTime(parsedTime.seconds || 0);
+try {
+  player.setCurrentTime(parsedTime.seconds || 0);
+} catch (error) {
+  console.log(error.message);
+}
